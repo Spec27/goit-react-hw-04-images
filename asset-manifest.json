@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/goit-react-hw-04-images/static/css/main.e3c785d7.css",
-    "main.js": "/goit-react-hw-04-images/static/js/main.46e56849.js",
+    "main.css": "/goit-react-hw-04-images/static/css/main.06f1fd6b.css",
+    "main.js": "/goit-react-hw-04-images/static/js/main.c7364495.js",
     "static/media/vista-3840x2160-avrora-23361.jpg": "/goit-react-hw-04-images/static/media/vista-3840x2160-avrora-23361.a05a48cb6a59f16739e8.jpg",
     "index.html": "/goit-react-hw-04-images/index.html",
-    "main.e3c785d7.css.map": "/goit-react-hw-04-images/static/css/main.e3c785d7.css.map",
-    "main.46e56849.js.map": "/goit-react-hw-04-images/static/js/main.46e56849.js.map"
+    "main.06f1fd6b.css.map": "/goit-react-hw-04-images/static/css/main.06f1fd6b.css.map",
+    "main.c7364495.js.map": "/goit-react-hw-04-images/static/js/main.c7364495.js.map"
   },
   "entrypoints": [
-    "static/css/main.e3c785d7.css",
-    "static/js/main.46e56849.js"
+    "static/css/main.06f1fd6b.css",
+    "static/js/main.c7364495.js"
   ]
 }
