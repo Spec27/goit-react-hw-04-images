@@ -1,46 +1,42 @@
-import React, { Component } from "react"
 import s from './Searchbar.module.css'
 import {toast} from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import PropTypes from 'prop-types';
+import { useState } from "react";
 
 
-class Searchbar extends Component{
-  state = {
-    query: '',
-  };
-
-
-  handleNameChange = event => {
-    this.setState({ query: event.currentTarget.value.toLowerCase() })
-  };
-
-
-  handleSubmit = event => {
+function Searchbar({onSubmit}) {
+  const [query, setQuery] = useState('')
+  
+ const handleNameChange = event => {
+  setQuery(event.currentTarget.value.toLowerCase())
+ };
+  
+  const handleSubmit = event => {
     event.preventDefault();
-    if (this.state.query.trim() === '') {
+    if (query.trim() === '') {
       toast.error("Введіть валідне значення")
       return
     }
-    this.props.onSubmit(this.state.query);
-    this.reset();
+    onSubmit(query);
+    reset();
     
   };
 
-  reset = () => {
-    this.setState({ query: ''})
+  const reset = () => {
+    setQuery('')
   }
 
-    render() {
-        return (
-            <header className={s.Searchbar}>
-            <form className={s.Form} onSubmit={this.handleSubmit}>
+
+  return (
+    <header className={s.Searchbar}>
+            <form className={s.Form} onSubmit={handleSubmit}>
               <input
                 className={s.Input}
                 type="text"
                 name='imageName'
-                value={this.state.query}
-                onChange={this.handleNameChange}
+                value={query}
+                onChange={handleNameChange}
                 autoComplete="off"
                 autoFocus
                 placeholder="Search images and photos"
@@ -49,15 +45,13 @@ class Searchbar extends Component{
                 <span className={s.ButtonLabel}>Search</span>
               </button>
             </form>
-          </header>  
-        )
-  };
-};
+          </header> 
+  )
+}
 
 Searchbar.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };
-
 export default Searchbar;
 
 

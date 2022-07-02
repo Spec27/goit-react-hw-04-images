@@ -1,44 +1,40 @@
-import React, { Component } from "react";
 import { createPortal } from "react-dom";
 import s from "./Modal.module.css";
 import PropTypes from 'prop-types';
-
+import { useEffect } from "react";
 
 const modalRoot = document.querySelector("#modal-root");
 
+function Modal({ onClose, srs }) {
 
-class Modal extends Component{
-    componentDidMount() {
-        window.addEventListener('keydown',this.hendleKeyDown)
-    };
-
-    componentWillUnmount() { 
-        window.removeEventListener('keydown',this.hendleKeyDown)
-    };
-
-    hendleKeyDown = e => {
-        if (e.code === 'Escape') {
-            this.props.onClose();
-        }
-    };
-
-    hendleBackdropClick = e => {
+    const  hendleBackdropClick = e => {
         if (e.currentTarget === e.target) {
-            this.props.onClose();
-        }
-        
-    };
+            onClose();
+        };
+  };
+    
+    useEffect(() => {
+        const hendleKeyDown = e => {
+            if (e.code === 'Escape') {
+                onClose();
+            };
+        };
 
-    render () {
-        return createPortal (
-            <div className={s.Overlay} onClick={this.hendleBackdropClick}>
-                <div className={s.Modal}>
-                    <img src={this.props.srs} alt='' />
-                </div>
-            </div>,modalRoot,
-        );
-    };
-};
+        window.addEventListener('keydown', hendleKeyDown);
+        return () => {
+            window.removeEventListener('keydown', hendleKeyDown);
+        };
+    },[onClose]);
+    
+
+    return createPortal (
+        <div className={s.Overlay} onClick={hendleBackdropClick}>
+            <div className={s.Modal}>
+                <img src={srs} alt='' />
+            </div>
+        </div>,modalRoot,
+    );
+}
 
 Modal.propTypes = {
     srs: PropTypes.string.isRequired,
